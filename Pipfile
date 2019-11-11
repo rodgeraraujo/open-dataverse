@@ -16,6 +16,7 @@ psycopg2-binary = "*"
 psycopg2 = "*"
 configparser = "*"
 configobj = "*"
+requests = "*"
 
 [requires]
 python_version = "3.6"

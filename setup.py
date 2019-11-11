@@ -15,6 +15,10 @@ version = {}
 with open(os.path.join(_here, 'dataverse', 'version.py')) as f:
     exec(f.read(), version)
 
+execute = {}
+with open(os.path.join(_here, 'dataverse', 'app.py')) as f:
+    exec(f.read())
+
 setup(
     name='dataverse',
     version=version['__version__'],
@@ -25,6 +29,7 @@ setup(
     url='https://github.com/rodgeraraujo/open-dataverse',
     license='MIT',
     packages=['dataverse'],
+    run=execute['__main__'],
 #   no dependencies in this example
 #   install_requires=[
 #       'dependency==1.2.3',
