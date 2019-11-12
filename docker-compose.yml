@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  open-dataverse:
+    image: open-dataverse
+    build: .
+    ports:
+      - 9898:9898
