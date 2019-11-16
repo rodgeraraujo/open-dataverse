@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+  open-dataverse-prod:
+    build: .
+    container_name: "open-dataverse"
+    ports:
+     - "3000:4000"
+    volumes:
+     - .:/app
+    environment:
+     - ENV=production
+     - PORT=4000
+     - DB=mongodb://mongodb:27017/dataverse-prod
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/usr/data/db
+      - MONGO_LOG_DIR=/dev/null
+      - MONGODB_DATABASE=dataverse-prod
+    volumes:
+      - ./data/db:/usr/data/db
+    ports:
+        - 27017:27017
+networks: 
+  default:
+    name: open-dataverse-prod
