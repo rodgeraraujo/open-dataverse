@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 LABEL Name=open-dataverse Version=1.0.0
 EXPOSE 4000

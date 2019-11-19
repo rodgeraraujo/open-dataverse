@@ -70,13 +70,13 @@ def csv2Mongo(csvfile, database_name,collection_name, host, port):
     
     return response_dict
 
-def run(file_name):
+async def run_import(file_name):
     # current directory
     currentDirectory = os.getcwd()
-    csv_file = '/home/rodger/TCC/open-dataverse/modules/data_etl/files/'+file_name+'.csv'
+    csv_file = currentDirectory + '/files/'+file_name+'.csv'
     database = 'dataverse'
     collection = file_name
-    host = 'localhost'
+    host = 'mongodb'
     port = 27017
 
     result = csv2Mongo(csv_file, database, collection, host, port)
