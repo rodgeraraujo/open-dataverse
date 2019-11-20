@@ -15,12 +15,7 @@ LOG = logger.get_root_logger(
 def students():
     ''' route read students data '''
     if request.method == 'GET':
-        # query = request.args
-        # print(query)
-
-        # data = mongo.db.students.find_one(query, {"_id": 0})
-        # data = mongo.db.students.find(query, {"online": True})
-        data = mongo.db.students.find()
+        data = mongo.db.aluno.find()
         
         students_list = []
         for student in data:

@@ -7,6 +7,10 @@ async def teste():
 
 def run():
     # asyncio.run(teste())
+    # run_download("aluno")
+    # run_import("aluno")
+    # run_download("servidores")
+    # run_import("servidores")
     asyncio.run(run_download("aluno"))
     asyncio.run(run_import("aluno"))
     asyncio.run(run_download("servidores"))

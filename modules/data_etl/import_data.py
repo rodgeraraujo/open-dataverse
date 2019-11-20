@@ -5,6 +5,7 @@ import traceback
 import sys, os
 from collections import OrderedDict
 from pymongo import MongoClient
+import pandas as pd
 
 
 def csv2Mongo(csvfile, database_name,collection_name, host, port):
@@ -70,14 +71,38 @@ def csv2Mongo(csvfile, database_name,collection_name, host, port):
     
     return response_dict
 
+def filterCsv(file_name, currentDirectory):
+    csv = currentDirectory + "/files/"+file_name+".csv"
+
+    data = pd.read_csv(csv, index_col = 0)
+    data.columns = data.columns.str.replace("[.]", "_")
+
+    data.head()
+
+    if file_name == "aluno":
+        data.query('curso_nome == "201 - Tecnologia em Análise e Desenvolvimento de Sistemas - Cajazeiras (CAMPUS CAJAZEIRAS)"', inplace = True)
+        data.query('situacao != "Cancelado"', inplace = True)
+        new_name = "students"
+    else:
+        data.query('cargo_emprego == "PROFESSOR ENS BASICO TECN TECNOLOGICO"', inplace = True)
+        data.query('disciplina_ingresso != "UNINFO-CZ"', inplace = True)
+        new_name = "teachers"
+
+    new_file = currentDirectory+"/files/"+new_name+".csv"
+    data.to_csv(new_file)
+
+    return new_file
+
 async def run_import(file_name):
     # current directory
     currentDirectory = os.getcwd()
-    csv_file = currentDirectory + '/files/'+file_name+'.csv'
+    # csv_file = '/home/rodger/TCC/open-dataverse/modules/data_etl/files/'+file_name+'.csv'
     database = 'dataverse'
     collection = file_name
     host = 'mongodb'
     port = 27017
+
+    csv_file = filterCsv(file_name, currentDirectory)
 
     result = csv2Mongo(csv_file, database, collection, host, port)
     # output the JSON transaction summary
