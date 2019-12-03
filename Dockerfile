@@ -1,5 +1,6 @@
-FROM python:3.7
+# FROM python:3.7
 # FROM python:3
+FROM python:3.7-slim-buster
 
 
 LABEL Name=open-dataverse Version=1.0.0
