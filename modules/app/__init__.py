@@ -5,6 +5,7 @@ import datetime
 from bson.objectid import ObjectId
 from flask import Flask
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 
 class JSONEncoder(json.JSONEncoder):
     ''' extend json-encoder class'''
@@ -23,5 +24,8 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = os.environ.get('DB')
 mongo = PyMongo(app)
 app.json_encoder = JSONEncoder
+
+# enable CORS
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 from app.controllers import *

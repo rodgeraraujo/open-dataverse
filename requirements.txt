@@ -11,3 +11,4 @@ pymongo==3.4.0
 flask_pymongo==0.5.1
 beautifulsoup4==4.8.1
 asyncio==3.4.3
+flask-cors==2.1.0

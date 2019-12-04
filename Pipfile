@@ -13,6 +13,7 @@ Flask-PyMongo = "==0.5.1"
 beautifulsoup4 = "==4.8.1"
 asyncio = "==3.4.3"
 pandas = "==0.25.3"
+flask-cors = "*"
 
 [requires]
 python_version = "3.7"

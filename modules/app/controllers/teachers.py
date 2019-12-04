@@ -15,7 +15,7 @@ LOG = logger.get_root_logger(
 def teachers():
     ''' route read teachers data '''
     if request.method == 'GET':
-        data = mongo.db.teachers.find()
+        data = mongo.db.servidores.find()
         
         teachers_list = []
         for teacher in data:
