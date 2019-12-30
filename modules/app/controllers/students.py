@@ -19,9 +19,9 @@ def students():
         
         students_list = []
         for student in data:
-            students_list.append(json.dumps(student, default=json_util.default))
+            students_list.append(student)
     
-        return jsonify(students_list), 200
+        return json.dumps(students_list, default=json_util.default), 200
 
     data = request.get_json()
     if request.method == 'POST':

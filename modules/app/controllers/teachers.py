@@ -19,6 +19,6 @@ def teachers():
         
         teachers_list = []
         for teacher in data:
-            teachers_list.append(json.dumps(teacher, default=json_util.default))
+            teachers_list.append(teacher)
     
-        return jsonify(teachers_list), 200
+        return json.dumps(teachers_list, default=json_util.default), 200
